@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template
+from flask import render_template, Response, request
 import templates
 
 
@@ -17,13 +17,35 @@ def start_page():
         return log_in_page()
 
 
-@app.route("/log_user_in", methods=['POST','GET'])
+@app.route("/log_user_in", methods=['POST', 'GET'])
 def log_user_in():
+    print("LOG USER IN!")
     #check is user in database
     #if yes, open user page
     #if no, shows an error and ask to register
-    return "User page"
 
+    if request.method == 'POST':
+        username = request.form['email']
+        password = request.form['password']
+        print(username+password)
+        #response = get_user_from_db(username, password);
+        #status_code = response.status_code
+
+
+        status_code = 400
+        if (username == "admin@admin"):
+            if (password == "admin123"):
+                status_code = 200
+
+
+
+        if status_code == 200:
+            return user_main_page()
+        else:
+            return "ERROR"
+
+    else:
+        return "Not post request!"
 
 
 @app.route("/register_user", methods=['POST','GET'])
@@ -50,3 +72,6 @@ def registration_page():
     return render_template('signup.html')
 
 
+@app.route('/user_main_page', methods=['POST','GET'])
+def user_main_page():
+    return render_template('user_main_page.html')
