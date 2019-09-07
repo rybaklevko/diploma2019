@@ -13,28 +13,6 @@
 
 <body>
     <section class="hero is-primary is-fullheight">
-
-        <div class="hero-head">
-            <nav class="navbar">
-                <div class="container">
-
-                    <div id="navbarMenuHeroA" class="navbar-menu">
-                        <div class="navbar-end">
-                            <a href="{{ url_for('start_page') }}" class="navbar-item">
-                                Profile
-                            </a>
-                            <a href="{{ url_for('log_in_page') }}" class="navbar-item">
-                                Login
-                            </a>
-                            <a href="{{ url_for('registration') }}" class="navbar-item">
-                                Sign Up
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-
         <div class="hero-body">
             <div class="container has-text-centered">
                {% block content %}
