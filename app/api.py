@@ -1,14 +1,14 @@
 from app import app
-from flask import render_template, request
+from flask import request
 
-from pages import login_page,profile_page,registration_page,user_main_page
+from pages import login_page, registration_page, devices_page
 
 
 @app.route('/', methods=['GET'])
 def start_page():
     is_registered = False
 
-    if (is_registered):
+    if is_registered:
         # user sign in (if registered)
         # get user from db
         # if exists - log in
@@ -31,7 +31,7 @@ def log_user_in():
         print(username+password)
 
 
-        if (username == '' or password == ''):
+        if username == '' or password == '':
             error = "Both user name and password are required!"
             return login_page.log_in_page(error)
 
@@ -39,12 +39,12 @@ def log_user_in():
         #status_code = response.status_code
 
         status_code = 400
-        if (username == "admin@admin"):
-            if (password == "admin123"):
+        if username == "admin@admin":
+            if password == "admin123":
                 status_code = 200
 
         if status_code == 200:
-            return user_main_page.user_main_page()
+            return devices_page.devices_page()
         else:
             error="User's credentials are wrong!"
             return login_page.log_in_page(error)
@@ -63,7 +63,7 @@ def register_user():
         print(email + name + password)
 
 
-        if (email == '' or password == '' or name == ''):
+        if email == '' or password == '' or name == '':
             error = "All these fields are required!"
             return registration_page.registration_page(error)
 
