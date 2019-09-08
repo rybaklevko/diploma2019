@@ -1,0 +1,10 @@
+<!-- templates/devices.html -->
+
+{% extends "base_user_page.html" %}
+
+{% block content %}
+<div class="column is-4 is-offset-4">
+    <h3 class="title">Users</h3>
+    {% if error %}<p class="error"><strong>Error:</strong> {{ error }}{% endif %}
+</div>
+{% endblock %}

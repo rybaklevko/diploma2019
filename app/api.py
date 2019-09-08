@@ -1,7 +1,7 @@
 from app import app
 from flask import request
 
-from pages import login_page, registration_page, devices_page
+from pages import login_page, registration_page, devices_page, users_page, app_info_page, account_settings_page
 
 
 @app.route('/', methods=['GET'])
