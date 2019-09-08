@@ -1,6 +1,7 @@
 from app import app
-from flask import render_template, Response, request
-import templates
+from flask import render_template, request
+
+from pages import login_page,profile_page,registration_page,user_main_page
 
 
 @app.route('/', methods=['GET'])
@@ -14,7 +15,7 @@ def start_page():
         return log_user_in()
     else:
         # user registration
-        return log_in_page()
+        return login_page.log_in_page()
 
 
 @app.route("/log_user_in", methods=['POST', 'GET'])
@@ -32,7 +33,7 @@ def log_user_in():
 
         if (username == '' or password == ''):
             error = "Both user name and password are required!"
-            return log_in_page(error)
+            return login_page.log_in_page(error)
 
         #response = get_user_from_db(username, password);
         #status_code = response.status_code
@@ -43,10 +44,10 @@ def log_user_in():
                 status_code = 200
 
         if status_code == 200:
-            return user_main_page()
+            return user_main_page.user_main_page()
         else:
             error="User's credentials are wrong!"
-            return log_in_page(error)
+            return login_page.log_in_page(error)
 
     else:
         return "Not post request!"
@@ -64,7 +65,7 @@ def register_user():
 
         if (email == '' or password == '' or name == ''):
             error = "All these fields are required!"
-            return registration_page(error)
+            return registration_page.registration_page(error)
 
             #1)add user into db
 
@@ -74,22 +75,3 @@ def register_user():
     else:
         return "Not post request!"
 
-
-@app.route('/profile_page', methods=['GET'])
-def profile_page():
-    return render_template("profile.html")
-
-
-@app.route('/log_in_page', methods=['GET'])
-def log_in_page(error=''):
-    return render_template("login.html", error=error)
-
-
-@app.route('/registration_page', methods=['POST', 'GET'])
-def registration_page(error=''):
-    return render_template('signup.html', error=error)
-
-
-@app.route('/user_main_page', methods=['POST', 'GET'])
-def user_main_page():
-    return render_template('user_main_page.html')
