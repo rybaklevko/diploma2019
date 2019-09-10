@@ -3,21 +3,25 @@
 {% extends "base_user_page.html" %}
 
 {% block content %}
-<div class="column is-4 is-offset-4">
+<div>
     <h3 class="title">DEVICES</h3>
     {% if error %}<p class="error"><strong>Error:</strong> {{ error }}{% endif %}
 
-    <table>
+    <table align="center">
     <tr>
-            <th>Name</th><th>Ip address</th><th>Address</th><th>User List</th>
-        </tr>
-        {% for device in devices %}
+        <th>Name</th><th>Ip address</th><th>Address</th><th>User List</th><th>Action button</th>
+    </tr>
+    {% for device in devices %}
             <tr>
-                <td align="right">{{device.name}}</td><td align="right">{{device.ip}}</td>
-                <td align="right">{{device.address}}</td>   <td align="right">{{device.userList}}</td>
-                <td><button type="submit"   class="btn btn-primary">Redirect</button></td>
+                <td>{{device.name}}</td><td>{{device.ip}}</td><td>{{device.address}}</td><td>{{device.userList}}</td>
+                <td><button class="button is-block is-info is-large is-fullwidth">Delete device</button></td>
             </tr>
-        {% endfor %}
+    {% endfor %}
     </table>
+
+    <br>
+    <form method="POST" action="/add_device">
+    <button class="button is-info is-large" align="center">Add Device</button>
+    </form>
 </div>
 {% endblock %}
