@@ -17,7 +17,11 @@
             <tr>
                 <td>{{user.firstName}}</td>
                 <td>{{user.secondName}}</td>
-                <td><img src="{{url_for('static', filename='lev1.jpg')}}" alt="Lev1" width="200" height="128"></td>
+                <td>
+                    <img src="{{url_for('static', filename='lev1.jpg')}}" alt="Lev1" width="200" height="128">
+                    <img src="{{url_for('static', filename='lev2.jpg')}}" alt="Lev1" width="200" height="128">
+                    <img src="{{url_for('static', filename='lev3.jpg')}}" alt="Lev1" width="200" height="128">
+                </td>
             </tr>
     {% endfor %}
     </table>
