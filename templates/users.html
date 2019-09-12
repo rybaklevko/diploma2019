@@ -18,17 +18,18 @@
                 <td>{{user.firstName}}</td>
                 <td>{{user.secondName}}</td>
                 <td>
-                    <img src="{{url_for('static', filename='lev1.jpg')}}" alt="Lev1" width="200" height="128">
-                    <img src="{{url_for('static', filename='lev2.jpg')}}" alt="Lev1" width="200" height="128">
-                    <img src="{{url_for('static', filename='lev3.jpg')}}" alt="Lev1" width="200" height="128">
+                    <img src="{{url_for('static', filename='lev1.jpg') }}" alt="Lev1" width="200" height="128">
+                    <img src="{{url_for('static', filename='lev2.jpg') }}" alt="Lev1" width="200" height="128">
+                    <img src="{{url_for('static', filename='lev3.jpg') }}" alt="Lev1" width="200" height="128">
+
                 </td>
             </tr>
     {% endfor %}
     </table>
 
     <br>
-    <form method="POST" action="/add_device">
-    <button class="button is-info is-large" align="center">Add Device</button>
+    <form method="POST" action="/add_user">
+    <button class="button is-info is-large" align="center">Add User</button>
     </form>
 </div>
 {% endblock %}

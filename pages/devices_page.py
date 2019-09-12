@@ -2,8 +2,8 @@ from app import app
 from flask import render_template
 
 # TODO data for device have to be read from DataBase
-device_list = [{'name': 'rybak_device', 'ip': '2', 'userList': {'Lev Rybak', 'DSA dsa'}, 'address' : 'Konovalsta str'},
-               {'name': 'pronko_device', 'ip': '3', 'userList': {'Lev Rybak', 'DSA dsa'}, 'address': 'Konovalsta str'}]
+device_list = [{'name': 'rybak_device', 'ip': '192.168.30.63', 'userList': {'Lev Rybak'}, 'address' : 'Konovalsta str'},
+               {'name': 'pronko_device', 'ip': '192.168.30.213', 'userList': {'Prohnko Oleg'}, 'address': 'Naykova str'}]
 
 
 @app.route('/devices_page', methods=['GET', 'POST'])
