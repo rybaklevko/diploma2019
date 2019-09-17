@@ -1,7 +1,7 @@
 from app import app
-from flask import request
+from flask import request, Response
 
-from pages import login_page, registration_page, devices_page, users_page, app_info_page, account_settings_page
+from pages import login_page, registration_page, devices_page, users_page, app_info_page, account_settings_page, live_streaming_page
 
 
 @app.route('/', methods=['GET'])
@@ -74,4 +74,5 @@ def register_user():
 
     else:
         return "Not post request!"
+
 

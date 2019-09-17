@@ -1,0 +1,17 @@
+<!-- templates/devices.html -->
+
+{% extends "base_user_page.html" %}
+
+{% block content %}
+<div>
+    <h3 class="title">Live video streaming</h3>
+    {% if error %}<p class="error"><strong>Error:</strong> {{ error }}{% endif %}
+
+    <img id="bg" src="{{ url_for('video_feed') }}">
+
+    <br>
+    <form method="POST" action="/add_device">
+    <button class="button is-info is-large" align="center">Add Device</button>
+    </form>
+</div>
+{% endblock %}
