@@ -1,14 +1,15 @@
 <!-- templates/devices.html -->
 
 {% extends "base_user_page.html" %}
+    <h3 class="title">Live video streaming</h3>
 
 {% block content %}
+
 <div>
     <h3 class="title">Live video streaming</h3>
     {% if error %}<p class="error"><strong>Error:</strong> {{ error }}{% endif %}
-
-    <img id="bg" src="{{ url_for('video_feed_page') }}">
-
+    <img id="bg" src="{{ url_for('video_feed') }}">
     <br>
 </div>
 {% endblock %}
+
