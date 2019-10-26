@@ -1,4 +1,4 @@
-from flask import request, Response
+from flask import request, Response, render_template
 from app import camera, app
 
 def gen(camera):
@@ -9,5 +9,6 @@ def gen(camera):
 
 @app.route('/video_feed_page', methods=['POST', 'GET'])
 def video_feed_page():
-    return Response(gen(camera.VideoCamera()),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
+    return render_template("live_streaming.html")
+    #return Response(gen(camera.VideoCamera()),
+    #                mimetype='multipart/x-mixed-replace; boundary=frame')
