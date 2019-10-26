@@ -9,6 +9,6 @@ def gen(camera):
 
 @app.route('/video_feed_page', methods=['POST', 'GET'])
 def video_feed_page():
-    return render_template("live_streaming.html")
-    #return Response(gen(camera.VideoCamera()),
-    #                mimetype='multipart/x-mixed-replace; boundary=frame')
+    #return render_template("live_streaming.html")
+    return Response(gen(camera.VideoCamera()),
+                    mimetype='multipart/x-mixed-replace; boundary=frame')
