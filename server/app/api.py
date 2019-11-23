@@ -80,8 +80,14 @@ def register_user():
 @app.route("/web_camera_image", methods=['POST', 'GET'])
 def receive_web_camera_image():
     print("receive_web_camera_image")
+    status = 400
+    message = 'Face not found!'
     if request.method == 'POST':
         file_path = request.form['file_path']
         print("Received file path " + file_path)
-        face_recognizers.FaceRecognizer.face_recognizer_base_function(file_path)
-    return "file received"
+        if True == face_recognizers.FaceRecognizer.face_recognizer_base_function(file_path):
+            status = 200
+            message = "Face is found"
+
+    resp = Response(message, status=status, mimetype='application/json')
+    return resp
