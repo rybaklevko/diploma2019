@@ -76,3 +76,10 @@ def register_user():
         return "Not post request!"
 
 
+@app.route("/web_camera_image", methods=['POST', 'GET'])
+def receive_web_camera_image():
+    print("receive_web_camera_image")
+    if request.method == 'POST':
+        file_path = request.form['file_path']
+        print("Received file path " + file_path)
+    return "file received"

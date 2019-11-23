@@ -6,6 +6,13 @@ device_list = [{'name': 'rybak_device', 'ip': '192.168.30.63', 'userList': {'Lev
                {'name': 'pronko_device', 'ip': '192.168.30.213', 'userList': {'Prohnko Oleg'}, 'address': 'Naykova str'}]
 
 
+@app.route('/add_device', methods=['POST'])
+def add_devices(error=''):
+    #add device, read from requests form and add into device_list
+
+    return devices_page(error)
+
+
 @app.route('/devices_page', methods=['GET', 'POST'])
 def devices_page(error=''):
     return render_template("devices.html", devices=device_list, error=error)
