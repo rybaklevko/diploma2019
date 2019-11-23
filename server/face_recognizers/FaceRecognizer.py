@@ -15,7 +15,7 @@ class FaceRecognizer:
 
     # Load the jpg file into a numpy array
     def load_images(self, user):
-        base_path = "C:\\Users\\Lev\\PycharmProjects\\face_recognition_lock_server\\DB\\images\\";
+        base_path = "C:\\Users\\Lev\\PycharmProjects\\face_recognition_lock_server\\server\\DB\\images\\";
         self.user_image1 = face_recognition.load_image_file(base_path + user['imagesList'][0])
         self.user_image2 = face_recognition.load_image_file(base_path + user['imagesList'][1])
         self.user_image3 = face_recognition.load_image_file(base_path + user['imagesList'][2])
