@@ -1,5 +1,6 @@
 import face_recognition
 
+
 users_list = [{'firstName': 'Jeff', 'secondName': 'Amazon', 'imagesList': ['jeff1.jpg','jeff2.jpg', 'jeff3.jpg']},
               {'firstName': 'Lev', 'secondName': 'Rybak', 'imagesList': ['lev1.jpg', 'lev2.jpg', 'lev3.jpg']}]
 
@@ -14,9 +15,10 @@ class FaceRecognizer:
 
     # Load the jpg file into a numpy array
     def load_images(self, user):
-        self.user_image1 = face_recognition.load_image_file(user['imagesList'][0])
-        self.user_image2 = face_recognition.load_image_file(user['imagesList'][1])
-        self.user_image3 = face_recognition.load_image_file(user['imagesList'][2])
+        base_path = "C:\\Users\\Lev\\PycharmProjects\\face_recognition_lock_server\\DB\\images\\";
+        self.user_image1 = face_recognition.load_image_file(base_path + user['imagesList'][0])
+        self.user_image2 = face_recognition.load_image_file(base_path + user['imagesList'][1])
+        self.user_image3 = face_recognition.load_image_file(base_path + user['imagesList'][2])
 
     def encode_image(self):
         self.user_face_encoding1 = face_recognition.face_encodings(self.user_image1)[0]
@@ -38,15 +40,13 @@ class FaceRecognizer:
         return index
 
 
-def face_recognizer_base_function():
+def face_recognizer_base_function(input_image_path):
     face_recognizer = FaceRecognizer()
     for user in users_list:
         face_recognizer.load_images(user)
         face_recognizer.encode_image()
-        #load_images(user)
-        #encode_image()
 
-        input_image = face_recognition.load_image_file("lev1.jpg")
+        input_image = face_recognition.load_image_file(input_image_path)
         input_image_encoding = face_recognition.face_encodings(input_image)[0]
 
         name_index = face_recognizer.compare_faces(input_image=input_image_encoding)

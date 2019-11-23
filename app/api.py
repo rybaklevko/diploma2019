@@ -3,6 +3,7 @@ from flask import request, Response
 
 from pages import login_page, registration_page, devices_page, users_page, app_info_page, account_settings_page, live_streaming_page
 
+import face_recognizers.FaceRecognizer
 
 @app.route('/', methods=['GET'])
 def start_page():
@@ -82,4 +83,5 @@ def receive_web_camera_image():
     if request.method == 'POST':
         file_path = request.form['file_path']
         print("Received file path " + file_path)
+        face_recognizers.FaceRecognizer.face_recognizer_base_function(file_path)
     return "file received"

@@ -10,8 +10,7 @@ device_list = [{'name': 'rybak_device', 'ip': '192.168.30.63', 'userList': {'Lev
 def add_devices(error=''):
     #add device, read from requests form and add into device_list
 
-    return devices_page(error)
-
+    return render_template("devices.html", devices=device_list, error=error)
 
 @app.route('/devices_page', methods=['GET', 'POST'])
 def devices_page(error=''):

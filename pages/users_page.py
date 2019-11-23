@@ -8,10 +8,10 @@ users_list = [{'firstName': 'Roman', 'secondName': 'Savuch', 'imagesList':{'jeff
 
 
 @app.route('/add_user', methods=['POST'])
-def add_devices(error=''):
+def add_new_user(error=''):
     # add user, read from requests form and add into users_list
 
-    return users_page(error)
+    return render_template("users.html", users=users_list, error=error)
 
 
 @app.route('/users_page', methods=['GET', 'POST'])
