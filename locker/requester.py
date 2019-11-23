@@ -13,5 +13,10 @@ def send_image(path):
         r = requests.post(url=API_ENDPOINT, data=data)
 
         # extracting response text
-        pastebin_url = r.text
-        print("The pastebin URL is:%s" % pastebin_url)
+        print(r.text)
+
+        if r.ok:
+                print("Opening doors")
+        else:
+                print("Face not found - door still closed")
+
