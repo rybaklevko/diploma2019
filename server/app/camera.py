@@ -17,7 +17,7 @@ class VideoCamera(object):
     def get_frame(self):
         success, image = self.video.read()
 
-        cascPath = "C:\\Users\\Lev\\PycharmProjects\\face_recognition_lock_server\\app\\haarcascade_frontalface_default.xml"
+        cascPath = "C:\\Users\\Lev\\PycharmProjects\\face_recognition_lock_server\\server\\app\\haarcascade_frontalface_default.xml"
 
         # Create the haar cascade
         faceCascade = cv2.CascadeClassifier(cascPath)
