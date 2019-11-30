@@ -18,16 +18,7 @@
                 <td>{{user.firstName}}</td>
                 <td>{{user.secondName}}</td>
                 <td>
-                    {% if user.firstName != "Lev" %}
-                    <img src="{{url_for('static', filename='rom1.jpg') }}" alt="Lev1" width="200" height="128">
-                    <img src="{{url_for('static', filename='rom2.jpg') }}" alt="Lev1" width="200" height="128">
-                    <img src="{{url_for('static', filename='rom3.jpg') }}" alt="Lev1" width="200" height="128">
-                    {% else %}
-                    <img src="{{url_for('static', filename='lev1.jpg') }}" alt="Lev1" width="200" height="128">
-                    <img src="{{url_for('static', filename='lev2.jpg') }}" alt="Lev1" width="200" height="128">
-                    <img src="{{url_for('static', filename='lev3.jpg') }}" alt="Lev1" width="200" height="128">
-                    {% endif %}
-
+                    <img src="data:image/jpg;base64,{{img_data}}" width="100" height="50" alt="base64 test"/>
                 </td>
             </tr>
     {% endfor %}
