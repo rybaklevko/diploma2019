@@ -1,0 +1,23 @@
+<!-- templates/devices.html -->
+
+{% extends "base_user_page.html" %}
+
+{% block content %}
+<div>
+    <h3 class="title">Users</h3>
+    {% if error %}<p class="error"><strong>Error:</strong> {{ error }}{% endif %}
+
+    <form action="/users_page" method="post">
+    <dl>
+      <dt>Second Name:
+      <dd><input type="text" name="second_name">
+        <dt>First Name:
+      <dd><input type="text" name="first_name">
+      <dt>Image list:
+      <dd><input type="text" name="image_list">
+      <br><br>
+      <button class="button is-info is-large" align="center">Add User</button>
+    </dl>
+  </form>
+</div>
+{% endblock %}

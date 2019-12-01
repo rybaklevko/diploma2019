@@ -1,9 +1,7 @@
 from app import app
-from flask import render_template, redirect
+from flask import render_template, redirect, request
 
 import base64
-from PIL import Image
-from io import BytesIO
 
 # TODO data for device have to be read from DataBase
 users_list = [{'user_id':'1','firstName': 'Roman', 'secondName': 'Savuch', 'imagesList': {'rom1.jpg','rom2.jpg','rom3.jpg'}},
@@ -11,20 +9,33 @@ users_list = [{'user_id':'1','firstName': 'Roman', 'secondName': 'Savuch', 'imag
 
 
 class UserWebPage():
-    def __init__(self, firstName="", secondName="", imageList={}):
+    def __init__(self, firstName = "", secondName = "", imageList = {}):
         self.firstName = firstName
         self.secondName = secondName
         self.imageList = imageList
+
 
 @app.route('/add_user', methods=['POST'])
 def add_new_user(error=''):
     # add user, read from requests form and add into users_list
 
-    return redirect('/users_page')#render_template("users.html", users=users_list, error=error)
+    return render_template("users_adding.html",  error=error)
 
 
 @app.route('/users_page', methods=['GET', 'POST'])
 def users_page(error=''):
+    if request.method == 'POST':
+        second_name = request.form["second_name"]
+        first_name = request.form["first_name"]
+        image_list = request.form["image_list"]
+        user = dict()
+        user['used_id'] = 3
+        user['firstName'] = first_name
+        user['secondName'] = second_name
+        user['imagesList'] = image_list
+
+        users_list.append(user)
+
     users = []
     for user in users_list:
         images = []
