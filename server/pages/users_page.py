@@ -15,27 +15,33 @@ class UserWebPage():
         self.imageList = imageList
 
 
-@app.route('/add_user', methods=['POST'])
-def add_new_user(error=''):
+@app.route('/add_user', methods=['GET', 'POST'])
+def add_user(error=''):
     # add user, read from requests form and add into users_list
-
+    try:
+        if request.method == 'POST':
+            print("Is post method")
+            second_name = request.form["second_name"]
+            first_name = request.form["first_name"]
+            image_list = request.form["image_list"]
+            user = dict()
+            user['used_id'] = 3
+            user['firstName'] = first_name
+            user['secondName'] = second_name
+            user['imagesList'] = image_list
+            #
+            users_list.append(user)
+            return redirect('/users_page')
+        else:
+            print("Is not post method!!")
+    except KeyError:
+        print("No such key in form")
+    print(request.method)
     return render_template("users_adding.html",  error=error)
 
 
 @app.route('/users_page', methods=['GET', 'POST'])
 def users_page(error=''):
-    if request.method == 'POST':
-        second_name = request.form["second_name"]
-        first_name = request.form["first_name"]
-        image_list = request.form["image_list"]
-        user = dict()
-        user['used_id'] = 3
-        user['firstName'] = first_name
-        user['secondName'] = second_name
-        user['imagesList'] = image_list
-
-        users_list.append(user)
-
     users = []
     for user in users_list:
         images = []
