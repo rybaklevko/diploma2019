@@ -7,14 +7,14 @@
     <h3 class="title">Users</h3>
     {% if error %}<p class="error"><strong>Error:</strong> {{ error }}{% endif %}
 
-    <form action="/add_user" method="POST">
+    <form action="/add_user" method="POST" enctype="multipart/form-data">
     <dl>
       <dt>Second Name:
       <dd><input type="text" name="second_name">
         <dt>First Name:
       <dd><input type="text" name="first_name">
       <dt>Image list:
-      <dd><input type="text" name="image_list">
+      <dd><input type="file" name="image_list" accept="image/*">
       <br><br>
       <button class="button is-info is-large" align="center">Add User</button>
     </dl>
