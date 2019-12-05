@@ -23,6 +23,15 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
+def save_image(image_file):
+    if image_file.filename == '':
+        print('No selected file')
+    if image_file and allowed_file(image_file.filename):
+        print(image_file.filename)
+        filename = secure_filename(image_file.filename)
+        full_path = (os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        image_file.save(full_path)
+
 @app.route('/add_user', methods=['GET', 'POST'])
 def add_user(error=''):
     # add user, read from requests form and add into users_list
@@ -34,22 +43,32 @@ def add_user(error=''):
 
             second_name = request.form["second_name"]
             first_name = request.form["first_name"]
-            image_file = request.files["image_list"]
+            image_file1 = request.files["image1"]
+            image_file2 = request.files["image2"]
+            image_file3 = request.files["image3"]
 
-            if image_file.filename == '':
-                print('No selected file')
-            if image_file and allowed_file(image_file.filename):
-                print(image_file.filename)
-                filename = secure_filename(image_file.filename)
-                full_path = (os.path.join(app.config['UPLOAD_FOLDER'], filename))
-                image_file.save(full_path)
+            save_image(image_file1)
+            save_image(image_file2)
+            save_image(image_file3)
+
+
+
+            # if image_file.filename == '':
+            #     print('No selected file')
+            # if image_file and allowed_file(image_file.filename):
+            #     print(image_file.filename)
+            #     filename = secure_filename(image_file.filename)
+            #     full_path = (os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            #     image_file.save(full_path)
 
             user = dict()
             user['used_id'] = 3
             user['firstName'] = first_name
             user['secondName'] = second_name
             user['imagesList'] = []
-            user['imagesList'].append(image_file.filename)
+            user['imagesList'].append(image_file1.filename)
+            user['imagesList'].append(image_file2.filename)
+            user['imagesList'].append(image_file3.filename)
 
             users_list.append(user)
             return redirect('/users_page')
