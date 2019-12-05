@@ -1,0 +1,23 @@
+<!-- templates/devices.html -->
+
+{% extends "base_user_page.html" %}
+
+{% block content %}
+<div>
+    <h3 class="title">Users</h3>
+    {% if error %}<p class="error"><strong>Error:</strong> {{ error }}{% endif %}
+
+    <form action="/add_device" method="POST">
+    <dl>
+      <dt>Device name:
+      <dd><input type="text" name="device_name">
+        <dt>Ip:
+      <dd><input type="text" name="ip">
+      <dt>Device address:
+      <dd><input type="text" name="address">
+        <br><br>
+      <button class="button is-info is-large" align="center">Add Device</button>
+    </dl>
+  </form>
+</div>
+{% endblock %}
