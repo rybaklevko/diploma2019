@@ -43,32 +43,19 @@ def add_user(error=''):
 
             second_name = request.form["second_name"]
             first_name = request.form["first_name"]
-            image_file1 = request.files["image1"]
-            image_file2 = request.files["image2"]
-            image_file3 = request.files["image3"]
-
-            save_image(image_file1)
-            save_image(image_file2)
-            save_image(image_file3)
-
-
-
-            # if image_file.filename == '':
-            #     print('No selected file')
-            # if image_file and allowed_file(image_file.filename):
-            #     print(image_file.filename)
-            #     filename = secure_filename(image_file.filename)
-            #     full_path = (os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            #     image_file.save(full_path)
+            image_files = []
+            image_files.append(request.files["image1"])
+            image_files.append(request.files["image2"])
+            image_files.append(request.files["image3"])
 
             user = dict()
             user['used_id'] = 3
             user['firstName'] = first_name
             user['secondName'] = second_name
             user['imagesList'] = []
-            user['imagesList'].append(image_file1.filename)
-            user['imagesList'].append(image_file2.filename)
-            user['imagesList'].append(image_file3.filename)
+            for image_file in image_files:
+                save_image(image_file)
+                user['imagesList'].append(image_file.filename)
 
             users_list.append(user)
             return redirect('/users_page')
