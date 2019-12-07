@@ -1,9 +1,10 @@
 from app import app
-from flask import request, Response
+from flask import request, Response,  json
 
 from pages import login_page, registration_page, devices_page, users_page, app_info_page, account_settings_page, live_streaming_page
 
 import face_recognizers.FaceRecognizer
+
 
 @app.route('/', methods=['GET'])
 def start_page():
@@ -85,9 +86,15 @@ def receive_web_camera_image():
     if request.method == 'POST':
         file_path = request.form['file_path']
         print("Received file path " + file_path)
-        if True == face_recognizers.FaceRecognizer.face_recognizer_base_function(file_path):
+        found_user = face_recognizers.FaceRecognizer.face_recognizer_base_function(file_path)
+        if not found_user == {}:# True == face_recognizers.FaceRecognizer.face_recognizer_base_function(file_path):
             status = 200
-            message = "Face is found"
+            print(found_user)
+            message = json.dumps(found_user)
+            #message = json.dumps({"error": "No error", "first_name" : found_user}
 
-    resp = Response(message, status=status, mimetype='application/json')
-    return resp
+    print(found_user)
+    print(message)
+    resp = Response(response=message, status=status, mimetype='application/json')
+    #app.response_class #json.dumps({"error": "No error", "first_name" : "lev"})
+    return resp#{"error": "No error", "first_name" : "lev"}, 200 #resp

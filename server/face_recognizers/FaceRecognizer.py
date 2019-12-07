@@ -41,7 +41,7 @@ class FaceRecognizer:
 
 
 def face_recognizer_base_function(input_image_path):
-    is_found = False
+    found_user = {}
 
     face_recognizer = FaceRecognizer()
     for user in users_list:
@@ -54,8 +54,11 @@ def face_recognizer_base_function(input_image_path):
         name_index = face_recognizer.compare_faces(input_image=input_image_encoding)
         if -1 != name_index:
             print(user['firstName'] + ' ' + user['secondName'])
-            is_found = True
+            found_user['firstName'] = user['firstName']
+            found_user['secondName'] = user['secondName']
+
+            break
         else:
             print("Face is not found")
 
-    return is_found
+    return found_user
