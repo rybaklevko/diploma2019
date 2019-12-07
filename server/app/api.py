@@ -5,6 +5,7 @@ from pages import login_page, registration_page, devices_page, users_page, app_i
 
 import face_recognizers.FaceRecognizer
 
+#from ..models import User
 
 @app.route('/', methods=['GET'])
 def start_page():
