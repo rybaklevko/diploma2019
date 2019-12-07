@@ -4,6 +4,7 @@ import keyboard
 import os
 import requester
 import timestamper
+from serial_controller import SerialController
 
 
 def are_faces_found(image_name):
@@ -41,13 +42,19 @@ def button_pressed():
 def app_control_process():
     image_name = "image" + str(timestamper.get_timestamp()) + ".jpg"
     print("Starting process...")
+    serial_contrl = SerialController()
+    serial_contrl.open_serial()
     while True:
         if button_pressed():
             take_an_image_from_web(image_name)
             while not are_faces_found(image_name):
                 take_an_image_from_web(image_name)
             print("image has been taken!")
-            requester.send_image(os.getcwd() + "\\" + image_name)
+            if requester.send_image(os.getcwd() + "\\" + image_name) is True:
+                serial_contrl.led_on()
+
+    serial_contrl.close_serial()
+
 
 
 print("Path at terminal when executing this file")

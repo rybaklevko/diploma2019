@@ -17,6 +17,9 @@ def send_image(path):
 
         if r.ok:
                 print("Opening doors")
+                return True
         else:
                 print("Face not found - door still closed")
+                return False
+        return False
 
