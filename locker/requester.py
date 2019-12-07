@@ -1,7 +1,6 @@
 # importing the requests library
 import requests
-import tkinter
-from tkinter import messagebox
+import ctypes
 
 
 # defining the api-endpoint
@@ -20,13 +19,13 @@ def send_image(path):
 
         if r.ok:
                 print("Opening doors")
-                root = tkinter.Tk()
-                root.withdraw()
-                messagebox.showinfo("Face has been found!", "Find user : %s. Opening door...")
+                ctypes.windll.user32.MessageBoxW(0, "Find user : %s. Opening door...", "Face has been found!", 0 )
+
                 return True
         else:
                 print("Face not found - door still closed")
-                messagebox.showerror("Face hasn't been found!", "Face not found - door still closed")
+                ctypes.windll.user32.MessageBoxW(0, "Face not found - door still closed", "Face hasn't been found!", 0)
+
                 return False
         return False
 

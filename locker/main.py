@@ -50,8 +50,10 @@ def app_control_process():
             while not are_faces_found(image_name):
                 take_an_image_from_web(image_name)
             print("image has been taken!")
-            if requester.send_image(os.getcwd() + "\\" + image_name) is True:
+            full_path = os.getcwd() + "\\" + image_name
+            if requester.send_image(full_path) is True:
                 serial_contrl.led_on()
+            os.remove(full_path)
 
     serial_contrl.close_serial()
 
