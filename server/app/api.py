@@ -5,7 +5,6 @@ from pages import login_page, registration_page, devices_page, users_page, app_i
 
 import face_recognizers.FaceRecognizer
 
-#from ..models import User
 
 @app.route('/', methods=['GET'])
 def start_page():
@@ -88,14 +87,11 @@ def receive_web_camera_image():
         file_path = request.form['file_path']
         print("Received file path " + file_path)
         found_user = face_recognizers.FaceRecognizer.face_recognizer_base_function(file_path)
-        if not found_user == {}:# True == face_recognizers.FaceRecognizer.face_recognizer_base_function(file_path):
+        if not found_user == {}:
             status = 200
             print(found_user)
             message = json.dumps(found_user)
-            #message = json.dumps({"error": "No error", "first_name" : found_user}
 
-    print(found_user)
-    print(message)
     resp = Response(response=message, status=status, mimetype='application/json')
-    #app.response_class #json.dumps({"error": "No error", "first_name" : "lev"})
-    return resp#{"error": "No error", "first_name" : "lev"}, 200 #resp
+
+    return resp
