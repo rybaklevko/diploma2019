@@ -14,19 +14,12 @@ def send_image(path):
         # sending post request and saving response as response object
         r = requests.post(url=API_ENDPOINT, data=data)
 
-        # extracting response text
-        #print(r.json())
-        #response_native = json.loads(r.text)
-        #print(response_native)
-        #print(response_native['first_name'])
-        print(r.text)
-        #print(r.json()['first_name'])
-
-
-
         if r.ok:
+                response_native = json.loads(r.text)
+                print(response_native['firstName'])
+                print(response_native['secondName'])
                 print("Opening doors")
-                ctypes.windll.user32.MessageBoxW(0, "Find user : %s. Opening door...", "Face has been found!", 0 )
+                ctypes.windll.user32.MessageBoxW(0, "Find user : {} {}. Opening door...".format(response_native['firstName'],response_native['secondName']), "Face has been found!", 0 )
 
                 return True
         else:
