@@ -4,6 +4,7 @@ from flask import request, Response,  json
 from pages import login_page, registration_page, devices_page, users_page, app_info_page, account_settings_page, live_streaming_page
 
 import face_recognizers.FaceRecognizer
+from app import mdls
 
 
 @app.route('/', methods=['GET'])
@@ -86,7 +87,7 @@ def receive_web_camera_image():
     if request.method == 'POST':
         file_path = request.form['file_path']
         print("Received file path " + file_path)
-        found_user = face_recognizers.FaceRecognizer.face_recognizer_base_function(file_path)
+        found_user = face_recognizers.FaceRecognizer.face_recognizer_base_function(mdls.users_list_models, file_path)
         if not found_user == {}:
             status = 200
             print(found_user)

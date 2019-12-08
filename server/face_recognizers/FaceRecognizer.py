@@ -1,10 +1,6 @@
 import face_recognition
 
 
-users_list = [{'firstName': 'Jeff', 'secondName': 'Amazon', 'imagesList': ['jeff1.jpg','jeff2.jpg', 'jeff3.jpg']},
-              {'firstName': 'Lev', 'secondName': 'Rybak', 'imagesList': ['lev1.jpg', 'lev2.jpg', 'lev3.jpg']}]
-
-
 class FaceRecognizer:
     def __init__(self):
         self.images = []
@@ -40,11 +36,11 @@ class FaceRecognizer:
         return index
 
 
-def face_recognizer_base_function(input_image_path):
+def face_recognizer_base_function(users_list, input_image_path):
     found_user = {}
 
     face_recognizer = FaceRecognizer()
-    for user in users_list:
+    for user in users_list:#users_list_models
         face_recognizer.load_images(user)
         face_recognizer.encode_image()
 

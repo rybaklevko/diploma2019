@@ -4,9 +4,7 @@ from flask import render_template, redirect, request
 import base64, os
 from werkzeug.utils import secure_filename
 
-# TODO data for device have to be read from DataBase
-users_list = [{'user_id':'1','firstName': 'Roman', 'secondName': 'Savuch', 'imagesList': {'rom1.jpg','rom2.jpg','rom3.jpg'}},
-               {'user_id':'2','firstName': 'Lev', 'secondName': 'Rybak', 'imagesList': {'lev1.jpg', 'lev2.jpg', 'lev3.jpg'}}]
+from app import mdls
 
 
 class UserWebPage():
@@ -57,7 +55,8 @@ def add_user(error=''):
                 save_image(image_file)
                 user['imagesList'].append(image_file.filename)
 
-            users_list.append(user)
+            mdls.users_list_models.append(user)
+            #users_list.append(user)
             return redirect('/users_page')
         else:
             print("Is not post method!!")
@@ -70,7 +69,7 @@ def add_user(error=''):
 @app.route('/users_page', methods=['GET', 'POST'])
 def users_page(error=''):
     users = []
-    for user in users_list:
+    for user in mdls.users_list_models:
         images = []
         images_name = []
         for image in user['imagesList']:
