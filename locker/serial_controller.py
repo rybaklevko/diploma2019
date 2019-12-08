@@ -19,7 +19,7 @@ class SerialController:
         print("LED is on...")
         time.sleep(0.1)
         self.ser.write(b'H')
-        time.sleep(2)
+        time.sleep(5)
         self.led_off()
 
 
