@@ -10,6 +10,7 @@ TODO:
 -Update requirments file
 -Fill information pages on administration page
 -Improve algorithm of searching face
+-Use 1 libary for face reco(remove from live_video_streaming)
 
 2) Program architecture change
 -Add two-level authentication(mobile code, app aprove etc)
